@@ -1,0 +1,47 @@
+
+model {
+
+
+# each network*network (nnet = net*net)
+for(net in 1:nnet) {
+  mu.alpha.n[net] ~ dunif(0.0100, 100)
+  chi.alpha.n.si[net] ~ dunif(0.0001, 3)
+  chi.alpha.n.pr[net] <- pow(chi.alpha.n.si[net], -2)
+
+  mu.beta.n[net] ~ dunif(-10, 10)
+  chi.beta.n.si[net] ~ dunif(0.0001, 3)
+  chi.beta.n.pr[net] <- pow(chi.beta.n.si[net], -2)
+}
+
+
+
+
+
+
+# each individual
+for(net in 1:nnet) {
+for(p in 1:np) {
+  alpha.pn[p,net] ~ dnorm(mu.alpha.n[net], chi.alpha.n.pr[net])  
+  beta.pn[p,net] ~ dnorm(mu.beta.n[net], chi.beta.n.pr[net])  
+}}
+
+
+
+
+# inside heimisphere
+chi.Y.corr.awak.si ~ dunif(0.0001, 3)
+chi.Y.corr.awak.pr <- pow(chi.Y.corr.awak.si, -2)
+for(i in 1:N) {
+  alpha.psn.h[i] = alpha.pn[pnum[i],netnum[i]];
+  beta.psn.h[i] = beta.pn[pnum[i],netnum[i]];
+  Y.corr.awak.mu[i] = X.corr.anes[i] * alpha.psn.h[i] + beta.psn.h[i]
+  Y.corr.awak[i] ~ dnorm( Y.corr.awak.mu[i], chi.Y.corr.awak.pr)
+}
+
+
+}
+
+
+  
+
+
