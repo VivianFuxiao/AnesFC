@@ -1,9 +1,9 @@
 # Subject-specific brain functional fingerprints are preserved during general anesthesia
-Contents
+# Contents
 
 
 
-Overview
+# Overview
 Motivated by clinical needs, we conducted a comprehensive study to explore the effects of anesthesia on cortical functional connectivity at an individual level. 
 Our study involved individualized functional analyses of resting-state fMRI data from 14 healthy participants, encompassing both awake and anesthetized states. 
 Importantly, each participant underwent extensive 96-minute fMRI scanning, enabling us to capture robust anesthesia-induced changes at the individual level. 
